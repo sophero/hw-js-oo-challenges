@@ -21,3 +21,24 @@ console.log(multiplier.getCurrentValue());
 
 
 // Question Two //
+
+function Photo(filename, locationTaken) {
+	this.filename = filename;
+	this.locationTaken = locationTaken;
+}
+
+function Album(photoArray) {
+	this.photos = photoArray;
+	this.addPhoto = function(photo) {
+		this.photos.push(photo);
+	}
+	this.listPhotos = function() {
+		for (var k = 0; k < this.photos.length; k++) {
+			console.log(this.photos[k]);
+		}
+	}
+	this.accessPhotoByIndex = function(index) {
+		console.log(this.photos[index]);
+	}
+}
+
