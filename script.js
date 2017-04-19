@@ -63,9 +63,10 @@ var john = new Person("John", "Smith", 52);
 var sarah = new Student("Sarah", "Strawbridge", 11);
 var briony = new Student("Briony", "Lightbody", 13);
 var craig = new Teacher("Craig", "Robinson", 46);
-var gillian = new Teacher("Gillian", "Trotter", 64);
 
-var south = new School("South Intermediate", [sarah], [gillian]);
+var south = new School("South Intermediate", [sarah], [craig]);
+var gillian = new Teacher("Gillian", "Trotter", 64, south);
+
 
 console.log(john.fullName());
 south.addStudent(briony);
@@ -94,7 +95,7 @@ function Student(fname, lname, age, school) {
 	this.isStudying = true;
 	this.numDetentions = 0;
 	this.currentGrade;
-	this.hasHomework;
+	this.hasHomework = false;
 	this.school = school;
 	this.attendDetention = function() {
 		this.numDetentions -= 1;
@@ -114,7 +115,7 @@ function Teacher(fname, lname, age, school) {
 	Person.apply(this, arguments);
 	this.isTeaching = true;
 	this.school = school;
-	this.hasApple;
+	this.hasApple = false;
 	this.assignGrade = function(student, grade) {
 		student.currentGrade = grade;
 		console.log(this.fullName() + " assigned a grade of " + grade + " to " + student.fullName() + ".");
@@ -135,13 +136,11 @@ function School(name, studentArray, teacherArray) {
 	this.teachers = teacherArray;
 
 	for (var k = 0; k < studentArray.length; k++) {
-		studentArray[k].school = this.name;
+		studentArray[k].school = this;
 	}
 	for (var k = 0; k < teacherArray.length; k++) {
-		teacherArray[k].school = this.name;
+		teacherArray[k].school = this;
 	}
-	
-	
 	this.listStudents = function() {
 		for (var k = 0; k < this.students.length; k++) {
 			console.log(this.students[k]);
@@ -154,12 +153,12 @@ function School(name, studentArray, teacherArray) {
 	}
 	this.addStudent = function(student) {
 		this.students.push(student);
-		student.school = this.name;
+		student.school = this;
 		console.log(student.fullName() + " added to school " + this.name + ".");
 	}
 	this.addTeacher = function(teacher) {
 		this.teachers.push(teacher);
-		teacher.school = this.name;
+		teacher.school = this;
 		console.log(teacher.fullName() + " added to school " + this.name + ".");
 	}
 }
