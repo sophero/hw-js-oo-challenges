@@ -53,3 +53,32 @@ function Album(photoArray) {
 	}
 }
 
+
+// Question Three //
+
+function Person(fname, lname, age) {
+	this.fname = fname;
+	this.lname = lname;
+	this.age = age;
+	this.fullName = function() {
+		return this.fname + " " + this.lname;
+	}
+}
+
+function Student(fname, lname, age, school) {
+	this.isStudying = true;
+	Person.apply(this, arguments);
+	this.school = school;
+}
+
+function Teacher(fname, lname, age, school) {
+	this.isTeaching = true;
+	Person.apply(this, arguments);
+	this.school = school;
+}
+
+function School(name, studentArray, teacherArray) {
+	this.name = name;
+	this.students = studentArray;
+	this.teachers = teacherArray;
+}
