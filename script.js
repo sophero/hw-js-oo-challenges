@@ -28,18 +28,25 @@ console.log(multiplier.getCurrentValue());
 
 console.log("\n Question Two");
 
-var gallery = document.getElementsByClassName("gallery-container")[0];
-console.log(gallery);
-
-var seneca = new Photo("seneca-1.jpg", "Philadelphia, PA");
 var portHills = new Photo("Port_Hills_on_fire_15_feb.jpg", "Christchurch, New Zealand");
 var harrisonsBight = new Photo("jack-harrisons-bight-3.jpg", "Harrison's Bight, New Zealand");
-
-var myAlbum = new Album([seneca, portHills]); 
+var otago = new Photo("IMG_0843.jpg", "Central Otago, New Zealand");
+var wittr = new Photo("wittr.jpg", "Philadelphia, PA");
+ 
+var myAlbum = new Album([otago, harrisonsBight, wittr]); 
 
 myAlbum.listPhotos();
-myAlbum.addPhoto(harrisonsBight);
+myAlbum.addPhoto(portHills);
 myAlbum.viewPhotoByIndex(2);
+
+var gallery = document.getElementsByClassName("gallery-container")[0];
+var displayGalleryButton = document.getElementsByClassName("display-gallery")[0];
+
+displayGalleryButton.addEventListener("click", function() {
+	myAlbum.displayPhotos();
+	displayGalleryButton.style.display = "none";
+});
+
  
 function Photo(filename, locationTaken) {
 	this.filename = filename;
@@ -63,13 +70,12 @@ function Album(photoArray) {
 	}
 	this.displayPhotos = function() {
 		for (var k = 0; k < this.photos.length; k++) {
+
 			var galleryItem = '<div class="gallery-item img' + k + '"></div>';
 			gallery.innerHTML += galleryItem;
-			// var imageDiv = getElementsByClassName("img" + k)[0];
+
 			var imageDiv = document.getElementsByClassName("gallery-item")[k];
 			imageDiv.style.backgroundImage = "url('" + this.photos[k].url + "')";
-			// console.log(this.photos[k].url);
-			// console.log(document.getElementsByClassName("gallery-item"));
 		}
 	}
 }
