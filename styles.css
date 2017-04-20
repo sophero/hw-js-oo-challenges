@@ -1,0 +1,16 @@
+.gallery-container {
+	width: 90vw;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.gallery-item {
+	width: 40vw;
+	height: 30vw;
+	min-height: 260px;
+	margin: 0;
+	background-size: cover;
+	background-position: center;
+}
+

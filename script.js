@@ -1,4 +1,5 @@
 // Question One //
+
 console.log("\n Question One");
 
 function Multiplier() {
@@ -21,8 +22,14 @@ console.log(multiplier.multiply(8));
 console.log(multiplier.getCurrentValue());
 
 
+
+
 // Question Two //
+
 console.log("\n Question Two");
+
+var gallery = document.getElementsByClassName("gallery-container")[0];
+console.log(gallery);
 
 var seneca = new Photo("seneca-1.jpg", "Philadelphia, PA");
 var portHills = new Photo("Port_Hills_on_fire_15_feb.jpg", "Christchurch, New Zealand");
@@ -37,6 +44,7 @@ myAlbum.viewPhotoByIndex(2);
 function Photo(filename, locationTaken) {
 	this.filename = filename;
 	this.locationTaken = locationTaken;
+	this.url = 'images/' + filename;
 }
 
 function Album(photoArray) {
@@ -53,10 +61,24 @@ function Album(photoArray) {
 	this.viewPhotoByIndex = function(index) {
 		console.log(this.photos[index]);
 	}
+	this.displayPhotos = function() {
+		for (var k = 0; k < this.photos.length; k++) {
+			var galleryItem = '<div class="gallery-item img' + k + '"></div>';
+			gallery.innerHTML += galleryItem;
+			// var imageDiv = getElementsByClassName("img" + k)[0];
+			var imageDiv = document.getElementsByClassName("gallery-item")[k];
+			imageDiv.style.backgroundImage = "url('" + this.photos[k].url + "')";
+			// console.log(this.photos[k].url);
+			// console.log(document.getElementsByClassName("gallery-item"));
+		}
+	}
 }
 
 
+
+
 // Question Three //
+
 console.log("\n Question Three");
 
 var john = new Person("John", "Smith", 52);
@@ -65,18 +87,23 @@ var briony = new Student("Briony", "Lightbody", 13);
 var craig = new Teacher("Craig", "Robinson", 46);
 
 var south = new School("South Intermediate", [sarah], [craig]);
+
 var gillian = new Teacher("Gillian", "Trotter", 64, south);
 
-
 console.log(john.fullName());
+
 south.addStudent(briony);
 south.addTeacher(craig);
+
 gillian.assignGrade(sarah, 96);
 gillian.assignHomework(sarah);
+
 sarah.completeHomework();
 sarah.giveApple(gillian);
+
 craig.giveDetention(briony, 3);
 briony.attendDetention();
+
 south.listStudents();
 south.listTeachers();
 
