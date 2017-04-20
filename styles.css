@@ -26,7 +26,7 @@ body {
 }
 
 .gallery-container {
-	width: 90vw;
+	width: 98vw;
 	margin: 0 auto;
 	display: flex;
 	justify-content: center;
@@ -35,6 +35,7 @@ body {
 
 .gallery-item {
 	width: 40vw;
+	min-width: 280px;
 	height: 30vw;
 	min-height: 260px;
 	margin: 3px;

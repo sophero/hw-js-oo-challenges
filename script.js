@@ -37,7 +37,7 @@ var myAlbum = new Album([otago, harrisonsBight, wittr]);
 
 myAlbum.listPhotos();
 myAlbum.addPhoto(portHills);
-myAlbum.viewPhotoByIndex(2);
+myAlbum.viewPhotoByIndex(3);
 
 var gallery = document.getElementsByClassName("gallery-container")[0];
 var displayGalleryButton = document.getElementsByClassName("display-gallery")[0];
@@ -71,7 +71,7 @@ function Album(photoArray) {
 	this.displayPhotos = function() {
 		for (var k = 0; k < this.photos.length; k++) {
 
-			var galleryItem = '<div class="gallery-item img' + k + '"></div>';
+			var galleryItem = '<div class="gallery-item"></div>';
 			gallery.innerHTML += galleryItem;
 
 			var imageDiv = document.getElementsByClassName("gallery-item")[k];
@@ -99,9 +99,13 @@ var gillian = new Teacher("Gillian", "Trotter", 64, south);
 console.log(john.fullName());
 
 south.addStudent(briony);
+south.listStudents();
+
 south.addTeacher(craig);
+south.listTeachers();
 
 gillian.assignGrade(sarah, 96);
+console.log(sarah.currentGrade);
 gillian.assignHomework(sarah);
 
 sarah.completeHomework();
@@ -110,8 +114,6 @@ sarah.giveApple(gillian);
 craig.giveDetention(briony, 3);
 briony.attendDetention();
 
-south.listStudents();
-south.listTeachers();
 
 
 function Person(fname, lname, age) {
@@ -195,16 +197,6 @@ function School(name, studentArray, teacherArray) {
 		console.log(teacher.fullName() + " added to school " + this.name + ".");
 	}
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
